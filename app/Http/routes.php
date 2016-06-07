@@ -13,6 +13,9 @@
 
 Route::resource('clientes', 'ClientController',['except'=>['create', 'edit']]);
 Route::resource('clientes.odts', 'ODTController',['except'=>['create', 'edit'], 'parameters'=>'singular']);
+Route::post('/registerUser', 'SentinelController@createUser');
+Route::post('/registerAdmin', 'SentinelController@createAdmin');
+Route::post('/login', 'SentinelController@login');
 
 Route::get('/', function () {
     $routeCollection = Route::getRoutes();

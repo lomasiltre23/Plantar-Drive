@@ -12,4 +12,8 @@ class Client extends Model
 	{
 		return $this->hasMany('App\ODT');
 	}
+	public function clients()
+	{
+		return $this->hasMany('App\Client');
+	}
 }

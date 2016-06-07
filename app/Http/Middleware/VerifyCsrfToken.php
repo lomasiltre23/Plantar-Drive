@@ -16,5 +16,8 @@ class VerifyCsrfToken extends BaseVerifier
         'clientes/*',
         'odts',
         'odts/*',
+        'registerUser',
+        'registerAdmin',
+        'login',
     ];
 }
