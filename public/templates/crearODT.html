@@ -1,0 +1,44 @@
+<div>
+    <div class="col m4 l4 s4">
+        <h3>{{Cliente}}</h3>
+        <h5>Crear Orden de Trabajo</h5>
+    </div>
+    <div class="divider" style="margin-bottom: 20px;"></div>
+    <form class="form-odt">
+        <div class="input-field">
+            <input type="text" id="txtNombreProyecto">
+            <label for="txtNombreProyecto">Nombre del Proyecto</label>
+        </div>
+        <div class="input-field">
+            <input id="txtCliente" type="text" disabled ng-model="Cliente">
+            <label for="txtCliente" class="active">Cliente</label>
+        </div>
+        <div class="input-field">
+            <input disabled type="text" id="txtFecha" ng-model="Fecha">
+            <label for="txtFecha" class="active">Fecha</label>
+        </div>
+        <div class="input-field" style="margin-bottom: 35px;">
+            <select ng-model="Areas.selected">
+                <option value="" disabled selected>Areas</option>
+                <option ng-repeat="area in Areas.options" value="{{area | firstCharToLowerCase}}">{{area}}</option>
+            </select>
+        </div>
+        <div class="input-field">
+            <textarea id="txtadescProyecto" class="materialize-textarea"></textarea>
+            <label for="txtadescProyecto">Descripcion del Proyecto</label>
+        </div>
+    </form>
+</div>
+<style>
+    .form-odt{
+        max-width: 700px;
+        margin: 0 auto;
+    }
+</style>
+<script>
+    setTimeout(function () {
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+    },100);
+</script>
