@@ -20,9 +20,9 @@ class ODTController extends Controller
     public function index($cliente)
     {
         if(is_numeric($cliente))
-            $client = Client::with('odts')->find($cliente);
+            $client = Client::with('odts.users')->find($cliente);
         else
-            $client = Client::with('odts')->where('slug', '=', $cliente)->first();
+            $client = Client::with('odts.users')->where('slug', '=', $cliente)->first();
 
         $odts = $client->odts;
         return response()->json(['data'=>$odts]);
@@ -46,8 +46,15 @@ class ODTController extends Controller
         $odt->endDate = $request->input('fechaFin');
         $odt->progress_estimated = 0;
         $odt->progress_real = 0;
-        $odt->status = 'Borrador';
+        $odt->status = 'Pendiente';
         $odt->client_id = $client->id;
+        $idsUsers = $request->input('usuarios');
+        $ids = explode(',', $idsUsers);
+        $odt->save();
+        foreach ($ids as $value) 
+        {
+            $odt->users()->attach($value);
+        }
         $odt->save();
         return response()->json(['success' => true, 'msg'=>'Orden de trabajo agregada']);
     }
@@ -60,7 +67,7 @@ class ODTController extends Controller
      */
     public function show($cliente, $odt)
     {
-        $odt = ODT::find($odt);
+        $odt = ODT::with('users')->find($odt);
         return response()->json(['data'=>$odt]);
     }
 

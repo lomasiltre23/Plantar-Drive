@@ -24,6 +24,7 @@ class CreateOdtsTable extends Migration
             $table->decimal('progress_real');
             $table->string('status');
             $table->integer('client_id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

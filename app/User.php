@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cartalyst\Sentinel\Users\EloquentUser as CartalystUser;
 
-class User extends Authenticatable
+class User extends CartalystUser
 {
     /**
      * The attributes that are mass assignable.
@@ -12,7 +13,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'first_name', 'last_name', 'permissions',
     ];
 
     /**
@@ -23,4 +24,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function odts()
+    {
+        return $this->belongsToMany('App\ODT', 'odt_user', 'user_id', 'odt_id');
+    }
+    public function client()
+    {
+        return $this->belongsTo('App\Client');
+    }
 }

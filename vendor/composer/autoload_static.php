@@ -266,6 +266,7 @@ class ComposerStaticInit8f6f7a796884a363a28ce10f89729d29
     public static $classMap = array (
         'CreateClientsTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_03_150412_create_clients_table.php',
         'CreateFilesTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_03_152135_create_files_table.php',
+        'CreateOdtUsersTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_08_170155_create_odt_users_table.php',
         'CreateOdtsTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_03_150814_create_odts_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',

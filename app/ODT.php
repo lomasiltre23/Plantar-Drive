@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class ODT extends Model
 {
     protected $table = 'odts';
-    public function cliente()
+    public function users()
     {
-    	return $this->belongsTo('App\Client');
+    	return $this->belongsToMany('App\User', 'odt_user', 'odt_id', 'user_id');
+    }
+    public function files()
+    {
+    	return $this->hasMany('App\File');
     }
 }

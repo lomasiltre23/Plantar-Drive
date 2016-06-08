@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFilesTable extends Migration
+class CreateOdtUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,10 @@ class CreateFilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('odt_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->text('path');
-            $table->string('type');
             $table->integer('odt_id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateFilesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('files');
+        Schema::drop('odt_user');
     }
 }

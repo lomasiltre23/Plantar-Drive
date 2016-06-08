@@ -60,4 +60,26 @@ class SentinelController extends Controller
         }
         return response()->json(['data'=>$data]);
     }
+    public function getUsers()
+    {
+        $role = Sentinel::findRoleByName('Usuarios');
+        $users = $role->users()->get();
+        $data = array();
+        foreach ($users as $user) 
+        {
+            array_push($data, $user['attributes']);
+        }
+        return response()->json(['success' => true, 'data' => $data]);
+    }
+    public function getUsersByClient($slug)    
+    {
+        $client = Client::with('users')->where('slug', '=', $slug)->first();
+        $users = $client->users;
+        $data = array();
+        foreach ($users as $user) 
+        {
+            array_push($data, $user['attributes']);
+        }
+        return response()->json(['success' => true, 'msg' => $data]);
+    }
 }
