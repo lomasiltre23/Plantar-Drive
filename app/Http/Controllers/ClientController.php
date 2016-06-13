@@ -36,7 +36,7 @@ class ClientController extends Controller
         $client->slug = str_slug($client->name, '-');
         ///////
         $file = $request->file('logo');
-        $destination_path = 'imgs/uploads/';
+        $destination_path = 'img/uploads/';
         $filename = str_random(6).'_'.$file->getClientOriginalName();
         $file->move($destination_path, $filename);
         /////

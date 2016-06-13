@@ -11,13 +11,16 @@
 |
 */
 
-Route::resource('clientes', 'ClientController',['except'=>['create', 'edit']]);
-Route::resource('clientes.odts', 'ODTController',['except'=>['create', 'edit'], 'parameters'=>'singular']);
-Route::get('/users', 'SentinelController@getUsers');
-Route::get('/users/{client}', 'SentinelController@getUsersbyClient');
+Route::resource('data/clientes', 'ClientController',['except'=>['create', 'edit']]);
+Route::resource('data/clientes.odts', 'ODTController',['except'=>['create', 'edit'], 'parameters'=>'singular']);
+Route::get('data/users', 'SentinelController@getUsers');
+Route::get('data/users/{client}', 'SentinelController@getUsersbyClient');
+Route::get('/checkLogin', 'SentinelController@checkLogin');
 Route::post('/registerUser', 'SentinelController@createUser');
 Route::post('/registerAdmin', 'SentinelController@createAdmin');
 Route::post('/login', 'SentinelController@login');
+
+Route::post('/upload', 'FileController@testUpload');
 
 Route::get('/', function ()
 {
@@ -28,6 +31,13 @@ Route::get('admin', function ()
 {
    return view('admin');
 });
+
+Route::get('demo', function ()
+{
+	return view('demoFiles');
+
+});
+
 
 Route::get('routes', function()
 {

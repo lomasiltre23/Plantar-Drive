@@ -82,4 +82,15 @@ class SentinelController extends Controller
         }
         return response()->json(['success' => true, 'msg' => $data]);
     }
+    public function checkLogin()
+    {
+        if($user = Sentinel::check())
+        {
+            return response()->json(['success' => true, 'user' => $user]);
+        }
+        else
+        {
+            return response()->json(['success' => false, 'msg' => 'User is not logged in']);
+        }
+    }
 }

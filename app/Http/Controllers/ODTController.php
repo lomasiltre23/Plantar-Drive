@@ -10,6 +10,8 @@ use App\ODT;
 
 use App\Client;
 
+use App\File;
+
 class ODTController extends Controller
 {
     /**
@@ -48,12 +50,22 @@ class ODTController extends Controller
         $odt->progress_real = 0;
         $odt->status = 'Pendiente';
         $odt->client_id = $client->id;
+        //
         $idsUsers = $request->input('usuarios');
-        $ids = explode(',', $idsUsers);
+        $idsU = explode(',', $idsUsers);
         $odt->save();
-        foreach ($ids as $value) 
+        foreach ($idsU as $value) 
         {
             $odt->users()->attach($value);
+        }
+        //
+        $idsFiles = $request->input('archivos');
+        $idsF = explode(',', $idsFiles);
+        foreach ($idsF as $value) 
+        {
+            $file = File::find($value);
+            $file->odt_id = $odt->id;
+            $file->save();
         }
         $odt->save();
         return response()->json(['success' => true, 'msg'=>'Orden de trabajo agregada']);
